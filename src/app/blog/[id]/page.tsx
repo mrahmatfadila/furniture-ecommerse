@@ -8,7 +8,7 @@ const blogs = [
   { id: 3, title: 'Kapan Waktu yang Tepat Mengganti Busa Sofa Anda?', image: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=1200', date: '02 Mar 2026', category: 'Perawatan' },
 ];
 
-export default async function BlogPostPage({ params }: { params: { id: string } }) {
+export default async function BlogPostPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const blogId = parseInt(id);
   const blog = blogs.find(b => b.id === blogId);

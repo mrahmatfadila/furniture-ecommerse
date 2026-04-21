@@ -12,7 +12,7 @@ const STATUS_TAG: Record<string, { label: string; cls: string }> = {
   on_sale:  { label: "Diskon",    cls: "bg-amber-100 text-amber-800" },
 };
 
-export default async function ProductDetailPage({ params }: { params: { id: string } }) {
+export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
   let product: any = null;

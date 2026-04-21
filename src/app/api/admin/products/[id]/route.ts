@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 import { getSession } from '@/lib/auth';
 
-export async function PUT(req: Request, context: { params: { id: string } }) {
+export async function PUT(req: Request, context: { params: Promise<{ id: string }> }) {
   const session = await getSession();
   if (!session || (session.role !== 'admin' && session.role !== 'owner')) {
     return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 403 });
@@ -23,7 +23,7 @@ export async function PUT(req: Request, context: { params: { id: string } }) {
   }
 }
 
-export async function DELETE(req: Request, context: { params: { id: string } }) {
+export async function DELETE(req: Request, context: { params: Promise<{ id: string }> }) {
   const session = await getSession();
   if (!session || (session.role !== 'admin' && session.role !== 'owner')) {
     return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 403 });
