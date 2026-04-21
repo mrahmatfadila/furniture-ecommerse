@@ -5,6 +5,9 @@ async function initDB() {
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
+    ssl: process.env.DB_HOST && process.env.DB_HOST.includes('tidbcloud') 
+      ? { minVersion: 'TLSv1.2', rejectUnauthorized: true }
+      : undefined
   });
 
   console.log('Connected to MySQL server.');
